@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.tempconvert;
+package edu.cnm.deepdive.tempconvert.service;
 
 public class Converter {
 

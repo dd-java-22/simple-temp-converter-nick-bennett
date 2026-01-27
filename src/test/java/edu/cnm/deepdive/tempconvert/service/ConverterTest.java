@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.tempconvert;
+package edu.cnm.deepdive.tempconvert.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
