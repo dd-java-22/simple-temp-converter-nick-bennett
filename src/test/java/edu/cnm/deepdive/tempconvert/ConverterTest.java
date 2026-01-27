@@ -37,7 +37,18 @@ class ConverterTest {
   }
 
   @ParameterizedTest
-  @ValueSource(doubles = {-459.67, -Double.MAX_VALUE})
+  @CsvFileSource(resources = "convert-valid.csv", useHeadersInDisplayName = true)
+  void convertF2C_valid(double expected, double fahrenheit) {
+    double tolerance = Math.max(MIN_ABSOLUTE_TOLERANCE, Math.abs(expected * TOLERANCE_SCALE));
+    assertEquals(
+        expected,
+        new Converter().convertF2C(fahrenheit),
+        tolerance
+    );
+  }
+
+  @ParameterizedTest
+  @ValueSource(doubles = {Converter.FAHRENHEIT_ABSOLUTE_ZERO - 0.01, -Double.MAX_VALUE})
   void convertF2C_invalid(double fahrenheit) {
     try {
       new Converter().convertF2C(fahrenheit);
