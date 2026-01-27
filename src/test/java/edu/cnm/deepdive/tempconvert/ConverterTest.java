@@ -29,7 +29,14 @@ class ConverterTest {
   @ParameterizedTest
   @ValueSource(doubles = {-273.16, -Double.MAX_VALUE})
   void convertC2F_invalid(double celsius) {
-    double actual = new Converter().convertC2F(celsius);
+    try {
+      new Converter().convertC2F(celsius);
+      fail("IllegalArgumentException expected, but no exception thrown.");
+    } catch (IllegalArgumentException e) {
+      // Do nothing! This exception is expected.
+    } catch (Exception e) {
+      fail("IllegalArgumentException expected, but %s thrown.".formatted(e.getClass().getSimpleName()));
+    }
   }
 
 }
