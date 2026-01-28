@@ -4,7 +4,7 @@ import edu.cnm.deepdive.tempconvert.controller.InputHandler;
 
 public class Main {
 
-  public static void main(String[] args) {
+  static void main() {
     new InputHandler().process();
   }
 

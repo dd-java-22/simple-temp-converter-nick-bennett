@@ -21,18 +21,11 @@ public class InputHandler {
     Converter converter = new Converter();
     Scanner scanner = new Scanner(System.in);
     while (scanner.hasNext()) {
-      if (scanner.hasNext(NUMBER_PATTERN)) {
-        String input = scanner.next(NUMBER_PATTERN);
-        double inputValue = Double.parseDouble(input);
+      if (scanner.hasNextDouble()) {
+        double input = scanner.nextDouble();
         String output = switch (mode) {
-          case CELSIUS -> {
-            double fahrenheit = converter.convertC2F(inputValue);
-            yield CELSIUS_INPUT_PATTERN.formatted(inputValue, fahrenheit);
-          }
-          case FAHRENHEIT -> {
-            double celsius = converter.convertF2C(inputValue);
-            yield FAHRENHEIT_INPUT_PATTERN.formatted(inputValue, celsius);
-          }
+          case CELSIUS -> CELSIUS_INPUT_PATTERN.formatted(input, converter.convertC2F(input));
+          case FAHRENHEIT -> FAHRENHEIT_INPUT_PATTERN.formatted(input, converter.convertF2C(input));
         };
         System.out.print(output);
       } else {
